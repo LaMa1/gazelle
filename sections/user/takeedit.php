@@ -28,6 +28,7 @@ $Val->SetFields('torrentsperpage',1,"inarray","You forgot to select your torrent
 $Val->SetFields('collagecovers',1,"number","You forgot to select your collage option.");
 $Val->SetFields('showtags',1,"number","You forgot to select your show tags option.",array('minlength'=>0,'maxlength'=>1));
 $Val->SetFields('maxtags',1,"number","You forgot to select your maximum tags to show in lists option.",array('minlength'=>0,'maxlength'=>10000));
+$Val->SetFields('showtagshorizontally',1,"number","You forgot to select your how to show tags in torrent details option.",array('minlength'=>0,'maxlength'=>1));
 $Val->SetFields('avatar',0,'image', 'Avatar: The image URL you entered was not valid.', 
                  array('regex' => $whitelistregex, 'maxlength' => 255, 'minlength' => 6, 'maxfilesizeKB'=>-1, 'dimensions'=>array(300,500)));
 $Val->SetFields('info',0,'desc','Info',array('regex'=>$whitelistregex,'minlength'=>0,'maxlength'=>20000));	
@@ -184,6 +185,7 @@ $Options['CollageCovers'] = empty($_POST['collagecovers']) ? 0 : $_POST['collage
 $Options['HideCats'] = (!empty($_POST['hidecats']) ? 1 : 0);
 $Options['ShowTags'] = (!empty($_POST['showtags']) ? 1 : 0);
 $Options['HideTagsInLists'] = (!empty($_POST['hidetagsinlists']) ? 1 : 0);
+$Options['ShowTagsHorizontally'] = (!empty($_POST['showtagshorizontally']) ? 1 : 0);
 $Options['AutoSubscribe'] = (!empty($_POST['autosubscribe']) ? 1 : 0);
 $Options['DisableLatestTopics'] = (!empty($_POST['disablelatesttopics']) ? 1 : 0);
 $Options['DisableSmileys'] = (!empty($_POST['disablesmileys']) ? 1 : 0);

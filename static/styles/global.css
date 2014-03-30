@@ -197,3 +197,35 @@ span.rbb { display: block; padding: 4px 0px 18px; margin-bottom: 5px; background
 .warnbox {
     background-color: #f99;border: 2px solid #600;color: darkblue;font-size: 1.2em;padding:5px;
 }
+
+.box_tags a.tag_name {
+	float: left;
+	display: block;
+}
+.box_tags ul div {
+	float: right;
+	display: block;
+	letter-spacing: -1px;
+}
+.box_tags .tag_action {
+	font-family: monospace;
+}
+.box_tags span.tag_score {
+	width: 10px;
+	text-align: center;
+	display: inline-block;
+}
+
+.box_tags_horizontal {
+	margin-bottom: 20px !important;
+}
+.box_tags_horizontal li {
+	float: left;
+	width: 262px;
+}
+.box_tags_horizontal .tag_add {
+	text-align: center;
+}
+.box_tags_horizontal input#tagname {
+	width: 150px;
+}

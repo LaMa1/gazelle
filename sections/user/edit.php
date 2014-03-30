@@ -263,6 +263,15 @@ echo $Val->GenerateJS('userform');
 				</td>
 			</tr>
 			<tr>
+				<td class="label"><strong>Show Tag list in torrent details</strong></td>
+				<td>
+					<select name="showtagshorizontally" id="showtagshorizontally">
+						<option value="1"<? if (!empty($SiteOptions['ShowTagsHorizontally'])) { ?>selected="selected"<? } ?>>Horizontally</option>
+						<option value="0"<? if (empty($SiteOptions['ShowTagsHorizontally'])) { ?>selected="selected"<? } ?>>Vertically</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
 				<td class="label"><strong>Hover info window</strong></td>
 				<td>
 					<input type="checkbox" name="hidefloatinfo" id="hidefloatinfo" <? if (!empty($SiteOptions['HideFloat'])) { ?>checked="checked"<? } ?> />

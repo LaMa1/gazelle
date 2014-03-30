@@ -507,91 +507,10 @@ if ($FreeTorrent == '0' && $IsUploader) {
             <br/>
 <?
         }
+		if (empty($LoggedUser['ShowTagsHorizontally'])) {
+			include(SERVER_ROOT.'/sections/torrents/details_tags.php');
+		}
 ?>
-            <a id="tags"></a>
-            <div class="head">
-                <strong>Tags</strong>
-                <span style="float:right;margin-left:5px;"><a href="#" id="tagtoggle" onclick="TagBox_Toggle(); return false;">(Hide)</a></span>
-                <span style="float:right;font-size:0.8em;">
-                    <a href="tags.php" target="_blank">tags</a> | <a href="articles.php?topic=tag" target="_blank">rules</a>
-                </span>
-            </div>
-            <div id="tag_container" class="box box_tags">
-                <div class="tag_header">
-                    <div>
-                        <input type="hidden" id="sort_groupid" value="<?=$GroupID?>" />
-                        <span id="sort_uses" class="button_sort sort_select"><a onclick="Resort_Tags(<?="$GroupID, 'uses'"?>);" title="change sort order of tags to total uses">uses</a></span>
-                        <span id="sort_score" class="button_sort"><a onclick="Resort_Tags(<?="$GroupID, 'score'"?>);" title="change sort order of tags to total score">score</a></span>
-                        <span id="sort_az" class="button_sort"><a onclick="Resort_Tags(<?="$GroupID, 'az'"?>);" title="change sort order of tags to total az">az</a></span>
-                        <!--<span id="sort_added" class="button_sort"><a onclick="Resort_Tags(<?="$GroupID, 'added'"?>);" title="change sort order of tags to total added">date</a></span>-->
-                    </div>
-                    Please vote for tags based <a href="articles.php?topic=tag" target="_blank"><strong class="important_text">only</strong></a> on their appropriateness for this upload.
-                </div>
-                <div id="torrent_tags" class="tag_inner">
-<?
-//if(count($Tags) > 0) {
- /*
-?>
-                          <ul class="stats nobullet">
-        <?
-               
-            foreach($Tags as $TagKey=>$Tag) {
-
-        ?>
-                                <li id="tlist<?=$Tag['id']?>">
-                                      <a href="torrents.php?taglist=<?=$Tag['name']?>" style="float:left; display:block;" title="<?=$Tag['votes']?>"><?=display_str($Tag['name'])?></a>
-                                      <div style="float:right; display:block; letter-spacing: -1px;">
-        <?		if(empty($LoggedUser['DisableTagging']) && 
-                                    (check_perms('site_vote_tag') || ($IsUploader && $LoggedUser['ID']==$Tag['userid']))) {  ?>
-                                      <a title="Vote down tag '<?=$Tag['name']?>'" href="#tags"  onclick="return Vote_Tag(<?="'{$Tag['name']}',{$Tag['id']},$GroupID,'down'"?>)" style="font-family: monospace;" >[-]</a>
-                                      <span id="tagscore<?=$Tag['id']?>" style="width:10px;text-align:center;display:inline-block;"><?=$Tag['score']?></span>
-                                      <a title="Vote up tag '<?=$Tag['name']?>'" href="#tags"  onclick="return Vote_Tag(<?="'{$Tag['name']}',{$Tag['id']},$GroupID,'up'"?>)" style="font-family: monospace;">[+]</a>
-      
-        <?          
-                  } else {  // cannot vote on tags ?>
-                                      <span style="width:10px;text-align:center;display:inline-block;" title="You do not have permission to vote on tags"><?=$Tag['score']?></span>
-                                      <span style="font-family: monospace;" >&nbsp;&nbsp;&nbsp;</span>
-                                      
-        <?		} ?>
-        <?		if(check_perms('users_warn')){ ?>
-                                      <a title="Tag '<?=$Tag['name']?>' added by <?=$Tag['username']?>" href="user.php?id=<?=$Tag['userid']?>" >[U]</a>
-        <?		} ?>
-        <?		if(check_perms('site_delete_tag') ) { // || ($IsUploader && $LoggedUser['ID']==$Tag['userid'])  
-                                   ?>
-                                   <a title="Delete tag '<?=$Tag['name']?>'" href="#tags"  onclick="return Del_Tag(<?="'{$Tag['id']}',$GroupID,'$tagsort'"?>)"   style="font-family: monospace;">[X]</a>
-        <?		} else { ?>
-                                      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;</span>
-        <?		} ?>
-                                      </div>
-                                      <br style="clear:both" />
-                                </li>
-        <?
-            }   
-        ?>
-                          </ul>
-<?   */
-//} else {
-if(count($Tags) == 0) {
-?>
-			Please add a tag for this torrent!
-<?
-} // action="torrents.php" 
-?>
-                </div>
-<?      if(empty($LoggedUser['DisableTagging']) && (check_perms('site_add_tag') || $IsUploader)) { ?>
-			<div class="tag_add">
-	<div id="messagebar" class="messagebar hidden"></div>
-				<form id="form_addtag" action="" method="post" onsubmit="return false;">
-					<input type="hidden" name="action" value="add_tag" />
-					<input type="hidden" name="auth" value="<?=$LoggedUser['AuthKey']?>" />
-					<input type="hidden" name="groupid" value="<?=$GroupID?>" />
-					<input type="hidden" name="tagsort" value="<?=$tagsort?>" />
-					<input type="text" id="tagname" name="tagname" size="15" onkeydown="if (event.keyCode == 13) { Add_Tag(); return false; }" />
-					<input type="button" value="+" onclick="Add_Tag(); return false;" />
-				</form>
-			</div>
-<?      }       ?>
-            </div>
 	</div>
      
      
@@ -907,7 +826,9 @@ if(count($PersonalCollages)>0) {
 		</table>
 <?
 }
-
+	if (!empty($LoggedUser['ShowTagsHorizontally'])) {
+		include(SERVER_ROOT.'/sections/torrents/details_tags.php');
+	}
 ?>
            
         </div>

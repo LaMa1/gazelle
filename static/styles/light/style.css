@@ -2823,3 +2823,7 @@ blockquote.bbcode.error code.error {
     vertical-align: middle;
     text-align: center;
 }
+
+.box_tags_horizontal li {
+	width: 231px;
+}

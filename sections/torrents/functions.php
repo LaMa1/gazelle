@@ -273,17 +273,17 @@ function get_taglist_html($GroupID, $tagsort, $order = 'desc') {
             foreach($Tags as $TagKey=>$Tag) {
 ?>
                                 <li id="tlist<?=$Tag['id']?>">
-                                      <a href="torrents.php?taglist=<?=$Tag['name']?>" style="float:left; display:block;" title="<?=$Tag['votes']?>"><?=display_str($Tag['name'])?></a>
-                                      <div style="float:right; display:block; letter-spacing: -1px;">
+                                      <a href="torrents.php?taglist=<?=$Tag['name']?>" class="tag_name" title="<?=$Tag['votes']?>"><?=display_str($Tag['name'])?></a>
+                                      <div>
         <?		if(check_perms('site_vote_tag') || ($IsUploader && $LoggedUser['ID']==$Tag['userid'])){  ?>
-                                      <a title="Vote down tag '<?=$Tag['name']?>'" href="#tags" onclick="return Vote_Tag(<?="'{$Tag['name']}',{$Tag['id']},$GroupID,'down'"?>)" style="font-family: monospace;" >[-]</a>
-                                      <span id="tagscore<?=$Tag['id']?>" style="width:10px;text-align:center;display:inline-block;"><?=$Tag['score']?></span>
-                                      <a title="Vote up tag '<?=$Tag['name']?>'" href="#tags" onclick="return Vote_Tag(<?="'{$Tag['name']}',{$Tag['id']},$GroupID,'up'"?>)" style="font-family: monospace;">[+]</a>
+                                      <a title="Vote down tag '<?=$Tag['name']?>'" href="#tags" onclick="return Vote_Tag(<?="'{$Tag['name']}',{$Tag['id']},$GroupID,'down'"?>)" class="tag_action">[-]</a>
+                                      <span id="tagscore<?=$Tag['id']?>" class="tag_score"><?=$Tag['score']?></span>
+                                      <a title="Vote up tag '<?=$Tag['name']?>'" href="#tags" onclick="return Vote_Tag(<?="'{$Tag['name']}',{$Tag['id']},$GroupID,'up'"?>)" class="tag_action">[+]</a>
       
         <?          
                   } else {  // cannot vote on tags ?>
-                                      <span style="width:10px;text-align:center;display:inline-block;" title="You do not have permission to vote on tags"><?=$Tag['score']?></span>
-                                      <span style="font-family: monospace;" >&nbsp;&nbsp;&nbsp;</span>
+                                      <span class="tag_score" title="You do not have permission to vote on tags"><?=$Tag['score']?></span>
+                                      <span class="tag_action">&nbsp;&nbsp;&nbsp;</span>
                                       
         <?		} ?>
         <?		if(check_perms('users_warn')){ ?>
@@ -292,9 +292,9 @@ function get_taglist_html($GroupID, $tagsort, $order = 'desc') {
         <?		if(check_perms('site_delete_tag') ) { // || ($IsUploader && $LoggedUser['ID']==$Tag['userid']) 
                                   /*    <a title="Delete tag '<?=$Tag['name']?>'" href="torrents.php?action=delete_tag&amp;groupid=<?=$GroupID?>&amp;tagid=<?=$Tag['id']?>&amp;auth=<?=$LoggedUser['AuthKey']?>" style="font-family: monospace;">[X]</a> */
                                    ?>
-                                   <a title="Delete tag '<?=$Tag['name']?>'" href="#tags" onclick="return Del_Tag(<?="'{$Tag['id']}',$GroupID,'$tagsort'"?>)"   style="font-family: monospace;">[X]</a>
+                                   <a title="Delete tag '<?=$Tag['name']?>'" href="#tags" onclick="return Del_Tag(<?="'{$Tag['id']}',$GroupID,'$tagsort'"?>)" class="tag_action">[X]</a>
         <?		} else { ?>
-                                      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;</span>
+                                      <span class="tag_action">&nbsp;&nbsp;&nbsp;</span>
         <?		} ?>
                                       </div>
                                       <br style="clear:both" />
@@ -303,6 +303,7 @@ function get_taglist_html($GroupID, $tagsort, $order = 'desc') {
             }
 ?>
                 </ul>
+				<br style="clear:both" />
 <?
     $html = ob_get_contents(); 
     ob_end_clean();
