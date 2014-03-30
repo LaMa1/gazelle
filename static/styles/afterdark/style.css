@@ -907,7 +907,7 @@ table.boxstat td:first-child {
 }
 
 .details .middle_column {
-    margin: 0px 270px 10px;
+    margin: 0px 270px 10px 0px;
 }
 .middle_column table {
     margin-top: 20px;
@@ -1072,10 +1072,10 @@ table.wid740 {
 /* Bonus SHop */
 
 tr.itembuy {
-     background: ##0000FF url(images/bggreenfade.png) repeat scroll 0% 0%;  
+     background: #0000FF url(images/bggreenfade.png) repeat scroll 0% 0%;  
 }
 tr.itemnotbuy {
-     background: ##B20000 url(images/bgredfade.png) repeat scroll 0% 0%;  
+     background: #B20000 url(images/bgredfade.png) repeat scroll 0% 0%;  
 }
 tr.itemduplicate {
      background: #333 url(images/bgfade.png) repeat scroll 0% 0%;  
