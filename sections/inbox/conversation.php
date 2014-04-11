@@ -186,6 +186,9 @@ if(!empty($ReplyID) && $ReplyID!=0 && $CSenderID!=0 && ( empty($LoggedUser['Disa
 ?>
 			</select>
             &nbsp;&nbsp;&nbsp;
+            <input type="radio" id="forwardtostaffpm" name="forwardto" value="staffpm" />
+			<label for="forwardtostaffpm">Forward as staff PM</label>
+            &nbsp;&nbsp;&nbsp;
 			<input type="button" onclick="Foward_To('conversation');" value="Forward entire conversation" />
             </form>
      </div>

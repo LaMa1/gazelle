@@ -18,7 +18,7 @@ if ($_REQUEST['action']=='forward') { // forwarding a msg
     
     if ($_POST['forwardto']=='staff') {
         $ToID = $_POST['receiverid']; 
-    } else { 
+    } else if ($_POST['forwardto']=='user') { 
         $ToUsername = $_POST['receivername'];
         $DB->query("SELECT ID FROM users_main WHERE Username='".db_string($ToUsername)."'");
         if ($DB->record_count()==0){
@@ -62,6 +62,12 @@ if ($_REQUEST['action']=='forward') { // forwarding a msg
     }
     $FwdBody="[br]$FwdBody";
     $Subject = "FWD: $Subheader";
+	
+	// forward to Staff PM requires special handling
+	if ($_POST['forwardto']=='staffpm') {
+		require(SERVER_ROOT.'/sections/inbox/forward_staffpm.php');
+		die();
+	}
 
 } else { // composing a new msg
     $Header = "Send";

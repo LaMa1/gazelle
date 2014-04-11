@@ -1,10 +1,16 @@
 <?
-if ($Message = db_string($_POST['message'])) {
+if (isset($_POST['message'])) {
     
       include(SERVER_ROOT.'/classes/class_text.php');
       $Text = new TEXT;
       $Text->validate_bbcode($_POST['message'],  get_permissions_advtags($LoggedUser['ID']));
       
+	$Message = $_POST['message'];
+	if (isset($_POST['forwardbody'])) {
+		$Message = $_POST['forwardbody'] . "[br]" . $Message;
+	}
+	$Message = db_string($Message);
+			
 	if ($Subject = db_string($_POST['subject'])) {
 		// New staff pm conversation
 		$Level = db_string($_POST['level']);
