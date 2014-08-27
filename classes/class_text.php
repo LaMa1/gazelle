@@ -1505,7 +1505,7 @@ class TEXT {
                     break;
                 case 'video':
                     //actually a youtube only tag inherited from emp
-                    if (!preg_match('/^http:\/\/www\.youtube\.com\/.*v=(.*)$/i', $Block['Attr'], $matches)) {
+                    if (!preg_match('/(?:https?:\/\/(?:www\.)?youtube(?:-nocookie)?\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/i', $Block['Attr'], $matches)) {
                         $Str.='[video=' . $Block['Attr'] . ']';
                     } else {
                         $vidurl = "http://www.youtube.com/v/{$matches[1]}";
